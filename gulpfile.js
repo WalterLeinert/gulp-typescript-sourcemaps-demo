@@ -9,15 +9,15 @@ gulp.task('default', () => {
 		.pipe(sourcemaps.init())
 		.pipe(ts())
 		.pipe(sourcemaps.write('.', { sourceRoot: '../src', includeContent: false }))
-		.pipe(gulp.dest("dist"));
+		.pipe(gulp.dest("dist-default"));
 });
 
 gulp.task('outdir', () => {
 	return gulp.src('src/**/*.ts')
 		.pipe(sourcemaps.init())
-		.pipe(ts({ outDir: 'dist' }))
+		.pipe(ts({ outDir: 'dist-outdir' }))
 		.pipe(sourcemaps.write('.', { sourceRoot: './', includeContent: false }))
-		.pipe(gulp.dest("dist"));
+		.pipe(gulp.dest("dist-outdir"));
 });
 
 // Note: The tsconfig.json file has set the `outDir` field, so the setup is almost the same
@@ -27,6 +27,6 @@ gulp.task('tsconfig', () => {
 	return project.src()
 		.pipe(sourcemaps.init())
 		.pipe(project())
-		.pipe(sourcemaps.write('.', { sourceRoot: './', includeContent: false }))
-		.pipe(gulp.dest("dist"));
+		.pipe(sourcemaps.write('.', { sourceRoot: './', includeContent: true }))
+		.pipe(gulp.dest("dist-tsconfig"));
 });
